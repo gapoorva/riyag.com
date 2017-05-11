@@ -28,3 +28,7 @@ node_modules
 
 # Debug log from npm
 npm-debug.log
+
+# Stuff from public
+public/bower_components
+public/node_modules
