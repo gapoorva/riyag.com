@@ -32,3 +32,5 @@ npm-debug.log
 # Stuff from public
 public/bower_components
 public/node_modules
+public/assets/events
+public/assets/photos

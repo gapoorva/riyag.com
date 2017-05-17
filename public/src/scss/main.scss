@@ -54,6 +54,10 @@
 
 // application styles:
 
+$michigan-maize: #ffcb05;
+$michigan-blue: #00274c;
+$michigan-light-blue: #0d57aa;
+$michigan-white: #e4e1df;
 
 @mixin timeline-bg {
  // background-image: url("/assets/Timeline_background.jpg");
@@ -62,4 +66,72 @@
 
 body {
   @include timeline-bg;
+}
+
+img.img-center {
+  margin: 0 auto;
+}
+
+img.fill {
+  width:100%;
+}
+
+div.card.event {
+  margin-top: 5em;
+  margin-bottom: $zero-margin;
+}
+
+h1, h2, h3, h4, h5 {
+  &.maize {
+    color: $michigan-maize;
+  }
+  &.blue {
+    color: $michigan-blue;
+  }
+  &.white {
+    color: $michigan-white;
+  }
+  &.active {
+    border: 5px solid $michigan-maize;
+    background-color: $michigan-light-blue;
+    padding: 2em auto;
+  }
+  a {
+    &:hover {
+      color: $michigan-maize;
+      text-decoration: underline;
+    }
+    color: $michigan-maize;
+  }
+}
+
+div.row, body {
+  &.blue-background {
+    background-color: $michigan-blue;
+    &.fat-top {
+      padding-top: 2em;
+    }
+    &.push-top {
+      margin-top: 2em;
+    }
+    &.fat-bottom {
+      padding-bottom: 2em;
+    }
+  }
+}
+
+// h1.maize {
+//   color: $michigan-maize;
+// }
+
+.top-bar {
+  background-color: $michigan-blue;
+}
+
+.card-divider {
+  font-weight: bold;
+}
+
+.card {
+  border-radius: 0.3em;
 }
