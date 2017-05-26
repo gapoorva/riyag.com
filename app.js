@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var grad = require('./routes/grad');
+var pictures = require('./routes/pictures');
+var video = require('./routes/video');
 
 var app = express();
 
@@ -18,10 +20,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  'maxAge': (app.get('env') === 'production' ? '1d' : '0')
+}));
 
 app.use('/', index);
 app.use('/grad', grad);
+app.use('/pictures', pictures);
+app.use('/video', video);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

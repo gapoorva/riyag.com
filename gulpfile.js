@@ -13,6 +13,7 @@ var sassPaths = [
 // Js sources
 var jsSources = [
   'public/bower_components/jquery/dist/**/*.min.js',
+  'public/bower_components/jquery-unveil/*.min.js',
   'public/bower_components/what-input/dist/**/*.min.js',
   'public/bower_components/foundation-sites/dist/**/*.min.js',
   'public/src/js/**/*.js'
@@ -45,30 +46,60 @@ gulp.task('sass', function() {
 
 });
 
-// JS Compilation and minification task
-gulp.task('js', function() {
+function jsTask() {
   return gulp.src(jsSources)
     .pipe($.uglify())
     .pipe($.concat('main.js'))
     .pipe(gulp.dest('public/js'));
-});
+}
 
-// Server Task
-gulp.task('server', function() {
+// JS Compilation and minification task
+gulp.task('js', jsTask);
+gulp.task('js-sync', ['sass'], jsTask);
+
+function devServerTask(cb) {
   if (node) node.kill();
   node = spawn('node', executePath, {stdio: 'inherit'});
   node.on('close', function(code) {
     if (code === 8) 
       gulp.log('Error detected, waiting for changes...');
   });
-})
+  cb();
+}
 
-// Runs by default when you type 'gulp'
-gulp.task('default', ['sass', 'js', 'server'] ,function() {
+// Server Task
+gulp.task('server', devServerTask);
+gulp.task('server-sync', ['js-sync'], devServerTask);
+
+function prodServerTask(cb) {
+  if (node) node.kill();
+  // clone environment varibles to prevent overrides
+  var env = Object.create(process.env);
+  // set the NODE_ENV to production
+  env.NODE_ENV = 'production'
+  node = spawn('node', executePath, {stdio: 'inherit', env: env});
+  node.on('close', function(code){
+    if (code === 8) 
+      gulp.log('Error detected, waiting for changes...');
+  });
+  cb();
+}
+
+gulp.task('prod', prodServerTask);
+gulp.task('prod-sync', ['js-sync'], prodServerTask);
+
+// Development server
+gulp.task('dev', ['server-sync'] ,function() {
   gulp.watch(['public/src/scss/**/*.scss'], ['sass']);
   gulp.watch(['public/src/js/**/*.js'], ['js']);
   gulp.watch(appPaths, ['server']);
 });
+
+// Runs by default when you type 'gulp'
+gulp.task('default', ['prod-sync'] ,function() {
+  
+});
+
 
 
 /*

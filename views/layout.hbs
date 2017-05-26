@@ -5,7 +5,11 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel='stylesheet' href='css/main.css' />
     <script type="text/javascript" src="js/main.js"></script>
-    <link rel="shortcut icon" type="image/png" href="assets/favicon-96x96.png"/>
+    <!--<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/what-input/dist/what-input.min.js"></script>
+    <script type="text/javascript" src="bower_components/foundation-sites/dist/js/foundation.min.js"></script>
+    <script type="text/javascript" src="bower_components/motion-ui/dist/motion-ui.min.js"></script>
+    <link rel="shortcut icon" type="image/png" href="assets/favicon-96x96.png"/>-->
   </head>
   <body {{#if timeline}} data-interchange="['assets/timeline-bg-small.png', small], ['assets/timeline-bg-medium.png', medium], ['assets/timeline-bg-large.png', large]" {{else}} class="blue-background" {{/if}} >
 
@@ -13,13 +17,13 @@
     <div class="top-bar" id="example-menu">
         <div class="row blue-background fat-top text-center">
           <div class="columns small-4">
-            <h3 class="maize {{#if pictures}}active{{/if}}"><a href="#">PICTURES</a></h1>
+            <h3 class="maize {{#if pictures}}active{{/if}}"><a href="/pictures">PICTURES</a></h1>
           </div>
           <div class="columns small-4">
-            <h3 class="maize {{#if timeline}}active{{/if}}"><a href="#">TIMELINE</a></h1>
+            <h3 class="maize {{#if timeline}}active{{/if}}"><a href="/grad">TIMELINE</a></h1>
           </div>
           <div class="columns small-4">
-            <h3 class="maize {{#if messages}}active{{/if}}"><a href="#">MESSAGES</a></h1>
+            <h3 class="maize {{#if video}}active{{/if}}"><a href="/video">VIDEO</a></h1>
           </div>
           <div class="columns small-4"></div>
           <div class="columns small-4"></div>
