@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "gulp",
+    "start": "node backend/bin/www",
     "dev": "gulp dev"
   },
   "dependencies": {
@@ -16,11 +16,17 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^4.2.3",
+    "css-loader": "^0.28.7",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.1",
     "gulp-load-plugins": "^1.1.0",
     "gulp-sass": "^2.1.0",
-    "gulp-uglify": "^2.1.2"
+    "gulp-uglify": "^2.1.2",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.9.1"
   }
 }
