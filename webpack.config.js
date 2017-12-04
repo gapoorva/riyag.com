@@ -1,11 +1,15 @@
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 var webpack = require('webpack');
 
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var NodemonPlugin = require('nodemon-webpack-plugin');
+
 module.exports = {
-    entry: './frontend/index.js',
+    entry: {
+        index: './frontend/index.js'
+    },
     output: {
         path: __dirname + '/dist',
-        filename: 'bundle.js'
+        filename: '[name].bundle.js'
     },
     externals: {
         foundation: 'Foundation'
@@ -34,7 +38,19 @@ module.exports = {
         }),
         new webpack.ProvidePlugin({
             _throttle: ['lodash', 'throttle']
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'commons',
+            filename: 'commons.js',
+            minChunks: 2,
+        }),
+        new NodemonPlugin({
+            watch: [
+                'frontend/',
+                'backend/',
+                'dist/'
+            ],
+            script: 'backend/bin/www'
         })
-
     ]
 };

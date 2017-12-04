@@ -13,7 +13,7 @@ function shuffle(a) {
   }
 }
 
-glob('*.{jpg,JPG,png,PNG}', {'cwd':'./public/assets/photos'}, function(er, files) {
+glob('*.{jpg,JPG,png,PNG}', {'cwd':'dist/assets/photos'}, function(er, files) {
   if (er) console.log(er);
   else {
     // create 3 subarrays in images
